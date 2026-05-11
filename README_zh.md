@@ -58,3 +58,8 @@ Agent Factory 3 站在這些 project 上：
 ## License
 
 Apache License 2.0。詳情看 [LICENSE](LICENSE)。
+
+## 備註
+
+本 repo 的部分文件與程式碼透過 LLM 協助撰寫，可能會有幻覺（憑空的數字、看似合理但實際錯誤的描述）漏網。
+發現問題請提 issue。

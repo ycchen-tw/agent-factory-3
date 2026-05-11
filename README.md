@@ -58,3 +58,9 @@ Agent Factory 3 stands on these projects:
 ## License
 
 Apache License 2.0. See [LICENSE](LICENSE).
+
+## Note
+
+Parts of the documentation and code in this repo were drafted with LLM assistance.
+Hallucinations (made-up numbers, plausible-but-wrong claims) may slip through review —
+if something looks off, please open an issue.

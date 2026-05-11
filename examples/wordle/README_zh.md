@@ -1,7 +1,9 @@
-# Wordle Demo（繁中）
+# Wordle Demo
 
-用 RL 訓練 **gpt-oss-120b**（LoRA r=8）在 4× H100 上玩英文 Wordle。
-大約 1 小時可以看到 solve rate 明顯上升。
+[English](README.md) | 中文 | [日本語](README_ja.md)
+
+用 RL 訓練 **gpt-oss-120b** 在 4× H100 上玩英文 Wordle。
+大約 4 小時可以看到 solve rate 明顯上升（[實際訓練紀錄](https://wandb.ai/asdzxcasdzxctw/agent-factory-wordle/reports/Untitled-Report--VmlldzoxNjg0MjE2OQ)）。
 
 > *建立日期：2026-05-07*
 
@@ -9,7 +11,7 @@
 
 ## 硬體
 
-- 4× H100 80GB（H200 / A100 80GB 也可）
+- 4× H100 80GB
 
 GPU 分配：
 
@@ -55,26 +57,6 @@ Log 在 `runs/wordle_demo/logs/`。
 | `batch_size / group_size` | 128 / 16 | 每 batch 8 個 group（DDIS 至少需要 4 個） |
 | 學習率 | 1e-5 | LoRA 慣用值 |
 
----
-
-## 預期結果
-
-| 時間 | 狀況 |
-|---|---|
-| 0–5 分鐘 | sglang 載入權重、CUDA graph warmup |
-| 5–15 分鐘 | 第一個 batch 收滿（128 rollout，8 個 group × 16），第一個 step |
-| 15–60 分鐘 | solve rate 從 ~30-50% 慢慢爬到 55-70% |
-
----
-
-## 常見狀況
-
-| 狀況 | 對策 |
-|---|---|
-| sglang OOM | 降 `--mem-fraction-static`（0.82 → 0.78） |
-| 訓練 OOM | 降 `max_capacity`（120000 → 80000） |
-| 前幾步 reward 都 0 | 正常。`filter_all_failed=True` 把 0% 的 group 過濾掉，等模型開始有信號 |
-| 看到很多 `abort` | 正常，weight sync 時會 abort 進行中的 rollout，最多重試 10 次 |
 
 ---
 

@@ -2,8 +2,8 @@
 
 English | [中文](README_zh.md) | [日本語](README_ja.md)
 
-Train **gpt-oss-120b** to play English Wordle on 4× H100.
-About four hours of training shows a clear solve-rate lift ([sample wandb run](https://wandb.ai/asdzxcasdzxctw/agent-factory-wordle/reports/Untitled-Report--VmlldzoxNjg0MjE2OQ)).
+Train **gpt-oss-120b** (LoRA r=8) to play English Wordle on 4× H100.
+About one hour of training shows a clear solve-rate lift ([sample wandb run](https://api.wandb.ai/links/asdzxcasdzxctw/874nlh4l)).
 
 > *Created 2026-05-07.*
 

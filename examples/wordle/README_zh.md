@@ -2,8 +2,8 @@
 
 [English](README.md) | 中文 | [日本語](README_ja.md)
 
-用 RL 訓練 **gpt-oss-120b** 在 4× H100 上玩英文 Wordle。
-大約 4 小時可以看到 solve rate 明顯上升（[實際訓練紀錄](https://wandb.ai/asdzxcasdzxctw/agent-factory-wordle/reports/Untitled-Report--VmlldzoxNjg0MjE2OQ)）。
+用 RL 訓練 **gpt-oss-120b**（LoRA r=8）在 4× H100 上玩英文 Wordle。
+大約 1 小時可以看到 solve rate 明顯上升（[實際訓練紀錄](https://api.wandb.ai/links/asdzxcasdzxctw/874nlh4l)）。
 
 > *建立日期：2026-05-07*
 

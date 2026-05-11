@@ -2,8 +2,8 @@
 
 [English](README.md) | [中文](README_zh.md) | 日本語
 
-**gpt-oss-120b** を RL で訓練し、4× H100 上で英語 Wordle をプレイさせます。
-約 4 時間の訓練で solve rate の明確な向上が確認できます（[wandb の訓練記録](https://wandb.ai/asdzxcasdzxctw/agent-factory-wordle/reports/Untitled-Report--VmlldzoxNjg0MjE2OQ)）。
+**gpt-oss-120b**（LoRA r=8）を RL で訓練し、4× H100 上で英語 Wordle をプレイさせます。
+約 1 時間の訓練で solve rate の明確な向上が確認できます（[wandb の訓練記録](https://api.wandb.ai/links/asdzxcasdzxctw/874nlh4l)）。
 
 > *作成日：2026-05-07*
 

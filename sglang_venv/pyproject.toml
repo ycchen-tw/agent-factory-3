@@ -1,0 +1,11 @@
+[project]
+name = "sglang-env"
+version = "0.0.0"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "sglang[all]",
+    "ninja",
+]
+
+[tool.uv.sources]
+sglang = { git = "https://github.com/ycchen-tw/sglang-dflash.git", branch = "dflash_v2", subdirectory = "python" }

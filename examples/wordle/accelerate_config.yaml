@@ -1,0 +1,13 @@
+compute_environment: LOCAL_MACHINE
+distributed_type: FSDP
+mixed_precision: bf16
+num_machines: 1
+num_processes: 2          # 2 FSDP ranks = GPU 2,3 in this example
+use_cpu: false
+
+fsdp_config:
+  fsdp_version: 2
+  fsdp_auto_wrap_policy: TRANSFORMER_BASED_WRAP
+  fsdp_transformer_layer_cls_to_wrap: GptOssDecoderLayer
+  fsdp_reshard_after_forward: true
+  fsdp_cpu_ram_efficient_loading: false

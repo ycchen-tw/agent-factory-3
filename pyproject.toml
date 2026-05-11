@@ -1,0 +1,53 @@
+[project]
+name = "agent-factory-3"
+version = "0.1.0"
+description = "Agent Factory 3: Async RL training framework for LLM agents"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.9.0,<2.10",
+    "sgl-kernel>=0.3.21",
+    "torchvision",
+    "torchaudio",
+    "openai>=2.21.0",
+    "openai-harmony>=0.0.8",
+    "fastmcp>=2.14.5,<3",
+    "transformers>=5.2.0",
+    "accelerate>=1.13.0",
+    "peft>=0.18.1",
+    "trl>=0.28.0",
+    "wandb>=0.25.0",
+    "wandb-workspaces>=0.1.10",
+    "requests-futures>=1.0.2",
+    "torch-memory-saver>=0.0.9",
+    "liger-kernel @ git+https://github.com/ycchen-tw/Liger-Kernel.git@claude/profile-gpt-oss-training-NLGOB",
+    "cut-cross-entropy",
+    "loguru>=0.7.3",
+    "aiohttp>=3.13.3",
+    "pytest>=9.0.2",
+    "kernels>=0.12.1",
+    "triton-kernels",
+    # "galois>=0.4.7",
+    # "gmpy2>=2.2.1",
+    # "ortools>=9.11.4210",
+    # "polars>=1.35.2",
+    # "pulp>=3.3.0",
+    # "scipy>=1.15.0",
+    # "shapely>=2.1.0",
+    # "python-flint>=0.8.0",
+    # "symengine>=0.14.1",
+    # "z3-solver>=4.15.4.0",
+    # "matplotlib>=3.10.8",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv.sources]
+cut-cross-entropy = { git = "https://github.com/apple/ml-cross-entropy.git" }
+openai-harmony = { git = "https://github.com/ycchen-tw/harmony.git" }
+triton-kernels = { git = "https://github.com/ycchen-tw/triton.git", branch = "v3.5.1-dev", subdirectory = "python/triton_kernels" }

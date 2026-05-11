@@ -1,0 +1,713 @@
+/**
+ * Rollout Viewer Styles
+ *
+ * Styles specific to the RolloutViewerApp component.
+ * Includes resizable sidebar, group cards, and conversation display.
+ */
+
+/* ==========================================================================
+   App Layout
+   ========================================================================== */
+
+.rollout-app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-bg-primary);
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+
+.sidebar {
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-min-width);
+  max-width: var(--sidebar-max-width);
+  background: var(--color-bg-secondary);
+  border-right: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.sidebar-header h1 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-purple);
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-2);
+}
+
+.sidebar-footer {
+  padding: var(--spacing-3) var(--spacing-4);
+  border-top: 1px solid var(--glass-border);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   Resize Handle
+   ========================================================================== */
+
+.resize-handle {
+  width: 4px;
+  background: transparent;
+  cursor: col-resize;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+  transition: background var(--transition-fast);
+}
+
+.resize-handle:hover,
+.resize-handle.resizing {
+  background: var(--color-accent-purple);
+}
+
+/* Visual indicator */
+.resize-handle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 32px;
+  background: var(--glass-border-light);
+  border-radius: var(--radius-full);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.resize-handle:hover::before {
+  opacity: 1;
+}
+
+/* Resizing state */
+body.resizing {
+  user-select: none;
+  cursor: col-resize;
+}
+
+body.resizing * {
+  cursor: col-resize !important;
+}
+
+/* ==========================================================================
+   Main Content Area
+   ========================================================================== */
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 400px;
+}
+
+.main-header {
+  padding: var(--spacing-4) var(--spacing-5);
+  border-bottom: 1px solid var(--glass-border);
+  background: var(--color-bg-primary);
+}
+
+.main-header h2 {
+  margin: 0 0 var(--spacing-2);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-purple);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.rollout-info {
+  display: flex;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.rollout-info span {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.rollout-info b {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.conversation-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-5);
+}
+
+/* ==========================================================================
+   Group Card - Glass Morphism
+   ========================================================================== */
+
+.group-card {
+  background: var(--glass-bg-15);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-2);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  transition: all var(--transition-normal);
+  /* Note: Don't use var(--transition-slow) as it contains "0.4s ease", causing double timing function */
+  animation: fadeInUp 0.4s ease both;
+  /* Using 'both' instead of 'forwards + opacity:0' lets the 'from' state apply before animation starts */
+}
+
+/* Staggered animation delays for group cards.
+   Note: .group-card already has animation defined above.
+   This is different from .animate-stagger in animations.css which provides both animation AND delays.
+   Use .animate-stagger for elements without their own animation. */
+.sidebar-content .group-card:nth-child(1) { animation-delay: 0.05s; }
+.sidebar-content .group-card:nth-child(2) { animation-delay: 0.10s; }
+.sidebar-content .group-card:nth-child(3) { animation-delay: 0.15s; }
+.sidebar-content .group-card:nth-child(4) { animation-delay: 0.20s; }
+.sidebar-content .group-card:nth-child(5) { animation-delay: 0.25s; }
+.sidebar-content .group-card:nth-child(6) { animation-delay: 0.30s; }
+.sidebar-content .group-card:nth-child(7) { animation-delay: 0.35s; }
+.sidebar-content .group-card:nth-child(8) { animation-delay: 0.40s; }
+
+.group-card:hover {
+  background: var(--glass-bg-20);
+  border-color: var(--glass-border-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.group-card.filtered {
+  opacity: 0.5;
+  filter: grayscale(30%);
+}
+
+.group-card.filtered:hover {
+  opacity: 0.7;
+  filter: grayscale(10%);
+}
+
+/* Group Header */
+.group-header {
+  padding: var(--spacing-3) var(--spacing-4);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background var(--transition-fast);
+}
+
+.group-header:hover {
+  background: var(--color-bg-hover);
+}
+
+.group-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  min-width: 0;
+}
+
+.group-title {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.group-meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.group-badges {
+  display: flex;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+.group-chevron {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  transition: transform var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.group-card.expanded .group-chevron {
+  transform: rotate(90deg);
+}
+
+/* Group Content */
+.group-content {
+  display: none;
+  padding: 0 var(--spacing-2) var(--spacing-2);
+}
+
+.group-card.expanded .group-content {
+  display: block;
+}
+
+/* ==========================================================================
+   Rollout Item - With Hover Effects
+   ========================================================================== */
+
+.rollout-item {
+  padding: var(--spacing-2) var(--spacing-3);
+  margin: var(--spacing-1) 0;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--glass-bg-05);
+  border-left: 3px solid transparent;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.rollout-item:hover {
+  background: var(--glass-bg-15);
+  transform: translateX(4px);
+}
+
+.rollout-item.selected {
+  background: var(--color-bg-selected);
+  border-color: var(--color-accent-indigo);
+  box-shadow: 0 0 12px rgba(251, 113, 133, 0.3);
+}
+
+.rollout-item.success {
+  border-left-color: var(--color-success);
+}
+
+.rollout-item.success:hover {
+  box-shadow: var(--shadow-glow-success);
+}
+
+.rollout-item.failed {
+  border-left-color: var(--color-error);
+}
+
+.rollout-item.failed:hover {
+  box-shadow: var(--shadow-glow-error);
+}
+
+.rollout-item.not-trainable {
+  opacity: 0.45;
+  border-left-color: #6b7280;
+}
+
+.rollout-item.not-trainable:hover {
+  opacity: 0.65;
+  box-shadow: none;
+}
+
+.rollout-id {
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-mono);
+  color: var(--color-text-primary);
+}
+
+.rollout-stats {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+/* ==========================================================================
+   Conversation Messages
+   ========================================================================== */
+
+.conversation {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.message {
+  margin: var(--spacing-3) 0;
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid;
+  background: var(--glass-bg-10);
+}
+
+.message-system {
+  background: rgba(251, 113, 133, 0.12);
+  border-color: var(--color-role-system);
+}
+
+.message-developer {
+  background: rgba(253, 164, 175, 0.15);
+  border-color: var(--color-role-developer);
+}
+
+.message-user {
+  background: rgba(244, 114, 182, 0.12);
+  border-color: var(--color-role-user);
+}
+
+.message-assistant {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: var(--color-role-assistant);
+}
+
+.message-tool {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: var(--color-role-tool);
+}
+
+/* Tool messages use monospace font */
+.message-tool .message-body {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+}
+
+.message-header {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-2);
+  display: flex;
+  gap: var(--spacing-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.message-author {
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.message-badge {
+  font-size: var(--font-size-xs);
+  padding: 2px 8px;
+  border-radius: var(--radius-md);
+}
+
+.message-badge.recipient {
+  background: rgba(255, 183, 197, 0.2);
+  color: var(--color-accent-purple);
+}
+
+.message-badge.channel {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--color-success);
+}
+
+.message-body {
+  line-height: var(--line-height-relaxed);
+}
+
+.message-body .content-text {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* System/Developer content */
+.content-system,
+.content-developer {
+  font-size: var(--font-size-sm);
+}
+
+.config-row {
+  margin: var(--spacing-1) 0;
+}
+
+.config-key {
+  color: var(--color-accent-purple);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Tools collapsible */
+.tools-details {
+  margin: var(--spacing-2) 0;
+}
+
+.tools-details summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.tools-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.tools-details summary::before {
+  content: '\25B6';
+  font-size: 0.7em;
+  transition: transform var(--transition-fast);
+}
+
+.tools-details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.tools-details pre {
+  margin-top: var(--spacing-2);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* ==========================================================================
+   Tool Stats Badges
+   ========================================================================== */
+
+.badge-time {
+  background: rgba(107, 114, 128, 0.3);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-mono);
+}
+
+.badge-error {
+  background: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  font-size: var(--font-size-xs);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.badge-early-exit {
+  background: rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+  font-size: var(--font-size-xs);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+/* Failed assistant turn (parse_error / no_final_channel / etc.) */
+.message-failed {
+  border-left: 3px solid rgba(239, 68, 68, 0.7);
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.message-error-detail {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-2) var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  color: #fca5a5;
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-mono);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ==========================================================================
+   Info Panels (Config & Error)
+   ========================================================================== */
+
+.info-panels {
+  padding: 0 var(--spacing-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.info-panels:empty {
+  display: none;
+}
+
+/* Config Panel */
+.config-panel {
+  background: var(--glass-bg-10);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.config-panel summary {
+  padding: var(--spacing-3) var(--spacing-4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  list-style: none;
+}
+
+.config-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.config-panel summary::before {
+  content: '\25B6';
+  font-size: 0.7em;
+  transition: transform var(--transition-fast);
+}
+
+.config-panel[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.config-panel summary:hover {
+  background: var(--color-bg-hover);
+}
+
+.config-panel-content {
+  padding: 0 var(--spacing-4) var(--spacing-3);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--spacing-2) var(--spacing-4);
+}
+
+.config-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.config-item-key {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.config-item-value {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-mono);
+}
+
+/* Error Panel */
+.error-panel {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.error-panel-header {
+  padding: var(--spacing-3) var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: #fca5a5;
+  font-weight: var(--font-weight-medium);
+}
+
+.error-panel-header .error-icon {
+  font-size: 1.2em;
+}
+
+.error-panel details {
+  border-top: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.error-panel details summary {
+  padding: var(--spacing-2) var(--spacing-4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  list-style: none;
+}
+
+.error-panel details summary::-webkit-details-marker {
+  display: none;
+}
+
+.error-panel details summary::before {
+  content: '\25B6';
+  font-size: 0.7em;
+  transition: transform var(--transition-fast);
+}
+
+.error-panel details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.error-panel details summary:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.error-panel .traceback {
+  padding: var(--spacing-3) var(--spacing-4);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 300px;
+  overflow-y: auto;
+  color: var(--color-text-secondary);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .resize-handle {
+    display: none;
+  }
+
+  .rollout-app {
+    flex-direction: column;
+  }
+
+  .main-content {
+    min-width: 0;
+  }
+
+  .rollout-info {
+    gap: var(--spacing-2);
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion Accessibility
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .group-card {
+    animation: none;
+    opacity: 1;
+  }
+
+  .group-card.filtered {
+    opacity: 0.5;
+  }
+
+  .rollout-item {
+    transition: none;
+  }
+}

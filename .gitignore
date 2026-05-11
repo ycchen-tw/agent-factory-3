@@ -1,0 +1,63 @@
+# ─── Python ───────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ─── Editor / OS ──────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── Environment ──────────────────────────────────────────────────────
+.env
+.env.local
+
+# ─── Logs ─────────────────────────────────────────────────────────────
+*.log
+pip-log.txt
+
+# ─── Project: training outputs ────────────────────────────────────────
+runs/
+results/
+notebooks/
+
+# ─── Project: local clones of dependencies (use pyproject deps) ───────
+ref_libs/
+fork_libs/
+
+# ─── Project: legacy / internal-only ──────────────────────────────────
+experiments/
+docs_private/
+
+# ─── Project: local tooling configs ───────────────────────────────────
+.claude/
+CLAUDE.md

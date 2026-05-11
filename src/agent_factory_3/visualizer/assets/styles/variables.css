@@ -1,0 +1,149 @@
+/**
+ * Design Tokens - CSS Custom Properties
+ *
+ * This file defines the foundational design system variables.
+ * All other CSS files should reference these variables for consistency.
+ */
+
+:root {
+  /* ==========================================================================
+     Color System
+     ========================================================================== */
+
+  /* Background Colors - 淺色櫻花主題 */
+  --color-bg-primary: #FFF5F7;      /* 淺粉白 */
+  --color-bg-secondary: #FFF0F3;    /* 更淺粉 */
+  --color-bg-card: #FFFFFF;         /* 白色卡片 */
+  --color-bg-hover: #FFE4E9;        /* 粉色 hover */
+  --color-bg-selected: #FFD1DB;     /* 粉色選中 */
+
+  /* Text Colors - 深色文字 */
+  --color-text-primary: #4A3540;
+  --color-text-secondary: #786070;
+  --color-text-muted: #B8A8B0;
+
+  /* Accent Colors - 櫻花粉 */
+  --color-accent-purple: #FFB7C5;   /* 主色：櫻花粉 */
+  --color-accent-pink: #F472B6;     /* 強調粉 */
+  --color-accent-blue: #FDA4AF;     /* 玫瑰粉 */
+  --color-accent-indigo: #FB7185;   /* 珊瑚粉 */
+
+  /* Semantic Colors */
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  --color-info: #FDA4AF;
+
+  /* Role Colors - 櫻花粉色系 */
+  --color-role-system: rgba(251, 113, 133, 0.85);   /* 粉色系 system */
+  --color-role-developer: rgba(253, 164, 175, 0.85); /* 玫瑰粉 developer */
+  --color-role-user: rgba(244, 114, 182, 0.85);     /* 粉紅 user */
+  --color-role-assistant: rgba(16, 185, 129, 0.85); /* 保持綠色 assistant */
+  --color-role-tool: rgba(245, 158, 11, 0.85);      /* 保持橘色 tool */
+
+  /* ==========================================================================
+     Glass Morphism
+     ========================================================================== */
+
+  /* Glass Morphism - 淺色主題用粉色調 */
+  --glass-bg-05: rgba(255, 183, 197, 0.05);
+  --glass-bg-10: rgba(255, 183, 197, 0.10);
+  --glass-bg-15: rgba(255, 183, 197, 0.15);
+  --glass-bg-20: rgba(255, 183, 197, 0.20);
+  --glass-bg-30: rgba(255, 183, 197, 0.30);
+  --glass-border: rgba(251, 113, 133, 0.20);
+  --glass-border-light: rgba(251, 113, 133, 0.30);
+  --glass-blur: blur(12px);
+  --glass-blur-heavy: blur(20px);
+
+  /* ==========================================================================
+     Spacing System (8pt Grid)
+     ========================================================================== */
+
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+
+  /* ==========================================================================
+     Border Radius
+     ========================================================================== */
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* ==========================================================================
+     Shadows
+     ========================================================================== */
+
+  /* Shadows - 淺色主題用粉色調陰影 */
+  --shadow-sm: 0 1px 3px rgba(251, 113, 133, 0.1);
+  --shadow-md: 0 4px 12px rgba(251, 113, 133, 0.15);
+  --shadow-lg: 0 8px 24px rgba(251, 113, 133, 0.2);
+  --shadow-xl: 0 16px 48px rgba(251, 113, 133, 0.25);
+
+  /* Glow Shadows */
+  --shadow-glow-success: 0 0 12px rgba(16, 185, 129, 0.5);
+  --shadow-glow-error: 0 0 12px rgba(239, 68, 68, 0.5);
+  --shadow-glow-purple: 0 0 12px rgba(255, 183, 197, 0.6);   /* 櫻花粉 glow */
+  --shadow-glow-pink: 0 0 12px rgba(251, 113, 133, 0.5);     /* 珊瑚粉 glow */
+
+  /* ==========================================================================
+     Typography
+     ========================================================================== */
+
+  --font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.85rem;    /* 13.6px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.1rem;     /* 17.6px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ==========================================================================
+     Transitions
+     ========================================================================== */
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.4s ease;
+  --transition-bounce: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ==========================================================================
+     Layout - Sidebar
+     ========================================================================== */
+
+  --sidebar-width: 320px;
+  --sidebar-min-width: 240px;
+  --sidebar-max-width: 500px;
+
+  /* ==========================================================================
+     Z-Index Scale
+     ========================================================================== */
+
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-tooltip: 400;
+}

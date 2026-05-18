@@ -79,7 +79,7 @@ async def _run_scenario(mode: str, target: str, scenario: str, *, max_attempts: 
             # Use a wrong-but-valid guess up to max_attempts.
             wrong = _other_answer(mode, target)
             last = None
-            limit = max_attempts or (10 if mode == "handle" else 6)
+            limit = max_attempts or (10 if mode in ("handle", "japanese") else 6)
             for _ in range(limit):
                 res = await client.call_tool("guess", {"word": wrong})
                 last = _extract_payload(res)

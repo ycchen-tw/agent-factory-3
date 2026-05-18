@@ -27,6 +27,7 @@ dependencies = [
     "pytest>=9.0.2",
     "kernels>=0.12.1",
     "triton-kernels",
+    "pypinyin>=0.50.0",
     # "galois>=0.4.7",
     # "gmpy2>=2.2.1",
     # "ortools>=9.11.4210",

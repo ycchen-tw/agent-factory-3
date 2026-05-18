@@ -61,3 +61,6 @@ docs_private/
 # ─── Project: local tooling configs ───────────────────────────────────
 .claude/
 CLAUDE.md
+
+# ─── Local scratch / upstream clones (not for distribution) ───────────
+dev/
